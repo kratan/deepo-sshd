@@ -1,0 +1,3 @@
+./volumes/certs/*
+./volumes/config/*
+./volumes/home/*

@@ -1,0 +1,23 @@
+sshd_sshdusername:
+  build: .
+  restart: always
+  hostname: username
+  container_name: username
+  volumes:
+    - /etc/localtime:/etc/localtime:ro
+    #- /var/run/nscd/socket:/var/run/nscd/socket:ro
+    #- /whereyourdataissaved/data:/data
+    - ./volumes/home:/home
+    - ./volumes/config:/config
+    - ./volumes/certs:/certs:ro
+    - ./volumes/certs/id_rsa.pub:/home/username/.ssh/keys/id_rsa.pub:ro
+  ports:
+    - "42222:22"
+    - "48888:8888"
+  environment:
+    - NVIDIA_VISIBLE_DEVICES=1
+    - NVIDIA_DRIVER_CAPABILITIES=compute,utility,video,graphics,display
+    - SESSION_USERNAME=username
+    - NOTEBOOKAPP_TOKEN=kk3k3k3k38787d77d7d7d7fiasdxxxx
+    - NOTEBOOK_DIR=/data
+    - UID_STUFF=username::345594994:3434343434
